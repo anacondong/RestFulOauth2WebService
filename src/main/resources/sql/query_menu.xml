@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-collection>
+
+	<sql-service name="MENU.FIND_ALL" type="named-parameter" showSql="true">
+		<description></description>		
+		<query><![CDATA[	
+			SELECT M.menuId, 
+			    M.description AS menuName, 
+			    M.action AS menuAction, 
+			    M.menuIcon, 
+			    M.seqNo AS menuSeq, 
+			    M.useYn AS menuEnabled, 
+			    M.menuLevel, 
+			    M.parentId AS menuParentId,
+		        M.menuNumber,
+                M.createDate, M.lastUpdate , M.createPerson, M.userCode,
+                CONCAT(E.firstName,' ', E.lastName) AS createBy, CONCAT(E2.firstName,' ', E2.lastName) AS updateBy,
+                ORG.orgId, ORG.orgName
+			FROM Menu M
+            LEFT JOIN UsrMaster U ON M.createPerson = U.userId
+			LEFT JOIN Employee E ON U.empId = E.empId
+			LEFT JOIN UsrMaster U2 ON M.userCode = U2.userId
+			LEFT JOIN Employee E2 ON U2.empId = E2.empId
+			LEFT JOIN Organization ORG ON M.orgId = ORG.orgId
+		]]>
+		</query>
+	</sql-service>
+
+	<sql-service name="MENU.FIND_BY_ID" type="named-parameter" showSql="true">
+		<description></description>		
+		<query><![CDATA[	
+			SELECT M.menuId, 
+			    M.description AS menuName, 
+			    M.action AS menuAction, 
+			    M.menuIcon, 
+			    M.seqNo AS menuSeq, 
+			    M.useYn AS menuEnabled, 
+			    M.menuLevel, 
+			    M.parentId AS menuParentId,
+		        M.menuNumber,
+                M.createDate, M.lastUpdate , M.createPerson, M.userCode,
+                CONCAT(E.firstName,' ', E.lastName) AS createBy, CONCAT(E2.firstName,' ', E2.lastName) AS updateBy,
+                ORG.orgId, ORG.orgName
+			FROM Menu M
+            LEFT JOIN UsrMaster U ON M.createPerson = U.userId
+			LEFT JOIN Employee E ON U.empId = E.empId
+			LEFT JOIN UsrMaster U2 ON M.userCode = U2.userId
+			LEFT JOIN Employee E2 ON U2.empId = E2.empId
+			LEFT JOIN Organization ORG ON M.orgId = ORG.orgId
+			WHERE M.menuId = :menuId
+					
+		]]>
+		</query>
+		<parameter name="menuId" required="true" />
+	</sql-service>
+</query-collection>

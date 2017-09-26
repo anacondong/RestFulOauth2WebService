@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: RestFulOauth2WebService
+Implementation-Version: 1.0.0-SNAPSHOT
+Built-By: Ittipol
+Implementation-Vendor-Id: RestFulOauth2WebService
+Build-Jdk: 1.8.0_51
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

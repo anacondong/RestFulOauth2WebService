@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!-- Log Level (DEBUG|INFO|WARN|ERROR|FATAL) -->
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<param name="Threshold" value="DEBUG" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy/MM/dd HH:mm:ss:SSS}][%p] %c{0} %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="roller" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="c:/log_RestFulOauth2WebService/web.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<param name="Threshold" value="DEBUG" />   
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy/MM/dd HH:mm:ss:SSS}][%p] %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- Hide Log Spring MVC -->
+	<logger name="org.springframework.web.servlet.mvc">
+	  <level value="error"/> 
+	  <appender-ref ref="console" />
+	</logger>
+	
+	<!-- Hide Log Quartz (Triggers) -->
+	<category name="com.mchange.v2">
+	    <priority value="OFF" />
+	</category>
+	
+	<!-- Root Logger -->
+	<root>
+		<level value="debug" />
+		<priority value="debug" />
+		<appender-ref ref="console" />
+		<appender-ref ref="roller" />
+	</root>
+
+</log4j:configuration>  

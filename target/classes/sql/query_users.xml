@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-collection>
+	<sql-service name="USER.SQL_LOGIN_BY_USER_NAME" type="named-parameter" showSql="true">
+		<description></description>		
+		<query><![CDATA[	
+			SELECT 
+				M.userId,
+                M.loginId,
+                M.password,
+                M.usrTypeCd,
+                M.pwdRecent1 ,
+                M.pwdRecent2 ,
+                M.pwdErrCnt ,
+                M.pwdChgDt ,
+                M.connectIp ,
+                M.loginYn ,
+                M.loginMode ,
+                M.loginDt ,
+                M.logoutDt ,
+                M.curLang ,
+                M.curEra ,
+                M.ldapId ,
+                M.reportToId ,
+                M.macAddr ,
+                M.useYn ,
+                M.userPic,
+                E.firstName,
+                E.lastName,
+                R.roleId,
+               	R.roleName,
+            uo.orgId, org.orgName, ORG.parentId AS parentOrgId, M.empId, M.ctiStation
+		  	FROM UsrMaster M
+		  	INNER JOIN Employee E ON M.empId = E.empId
+     	 	INNER JOIN UsrRole UR ON UR.userId = M.userId
+      		INNER JOIN Role R ON R.roleId = UR.roleId
+      		LEFT JOIN UsrOrganization uo on m.userId = uo.userId
+		    LEFT JOIN Organization org on uo.orgId = org.orgId
+		  	WHERE 1=1 
+		  	AND M.loginId = :userName
+		]]>
+		</query>
+		<parameter name="userName" required="true" />
+	</sql-service>
+	
+</query-collection>
