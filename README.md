@@ -6,9 +6,13 @@ Install >> mvn clean install
 Run
 <br/>
 Post >> http://localhost:8080/RestFulOauth2WebService/oauth/token?grant_type=password&username=anacondong&password=password
-      - Basic Auth
-      userName =  my-trusted-client
+      - Basic Auth <br/>
+      userName =  my-trusted-client<br/>
       password =  secret
       
 <br/>      
 Get >> http://localhost:8080/RestFulOauth2WebService/persons?access_token=0c58a57f-2bb2-424b-b6fd-428baa202131
+
+
+
+JAVA RUN >>> run application as "SpringRestClient.java"
